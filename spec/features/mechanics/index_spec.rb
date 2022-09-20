@@ -17,12 +17,16 @@ RSpec.describe 'As a User, when I visit the Mechanics Index Page' do
 
     it 'shows a header saying "All Mechanics" with a list of all mechanics names and their experience' do
         visit "/mechanics"
-        expect(page).to have_content("Lisa Simmons, 11 years of experience")
-        expect(page).to have_content("Jason Mayor, 5 years of experience")
+        # within "#mechanic-#{@lisa}" do
+            expect(page).to have_content("Lisa Simmons, 11 years of experience")
+        # end
+        # within "#mechanic-#{@jason}" do
+            expect(page).to have_content("Jason Mayor, 5 years of experience")
+        # end 
     end
 
     it 'also shows the average years of experience across all mechanics' do
         visit "/mechanics"
-        expect(page).to have_content("Combined, their average years of experience is 8 years")
+        expect(page).to have_content("Combined, their average years of experience is #{Mechanic.avg_years_experience} years")
     end
 end
